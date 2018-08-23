@@ -56,7 +56,7 @@ dependencies {
     implementation "$api_kt"
     implementation "$api_appcompat"
 
-    implementation 'org.wbing:base:0.1.3'
+    implementation 'org.wbing:base:0.1.4'
     implementation project(':library')
 
 }
