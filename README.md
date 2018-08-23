@@ -2,8 +2,8 @@
 ####使用方法：
 
 ```groovy
-	implementation 'org.wbing:base:0.1.3'
-	implementation 'org.wbing:main:0.0.2'
+	implementation 'org.wbing:base:0.1.4'
+	implementation 'org.wbing:main:0.0.4'
 	implementation "$api_kt"//部分代码依赖kotlin，所以需要依赖
 	implementation "$api_appcompat"//使用了appcompat兼容包
 ```
