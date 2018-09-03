@@ -26,6 +26,10 @@ class MainAdapter(fm: FragmentManager?, private val list: Array<TabModel?>?) : F
         return list!![position]!!.icon
     }
 
+    fun getModel(position: Int): TabModel? {
+        return list!![position]
+    }
+
     override fun getItemId(position: Int): Long {
         return list!![position]!!.id.toLong()
     }

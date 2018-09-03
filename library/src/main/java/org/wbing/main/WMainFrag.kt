@@ -1,5 +1,6 @@
 package org.wbing.main
 
+import android.content.Context
 import android.support.v4.view.ViewPager
 import android.view.ViewGroup
 import android.widget.RadioGroup
@@ -12,12 +13,14 @@ import org.wbing.main.databinding.WMainPageBinding
  */
 abstract class WMainFrag : WFrag<WMainPageBinding>() {
 
+    private var mOnPageChangeListener: OnPageChangeListener? = null
     private var adapter: MainAdapter? = null
     private var onPageChangeListener = object : ViewPager.SimpleOnPageChangeListener() {
         override fun onPageSelected(position: Int) {
             val id = adapter?.getItemId(position)!!.toInt()
             val tabButton = getBinding()?.tabs?.findViewById<TabButton>(id)
             tabButton?.isChecked = true
+            mOnPageChangeListener?.onPageSelected(position, adapter?.getModel(position))
         }
     }
 
@@ -61,6 +64,18 @@ abstract class WMainFrag : WFrag<WMainPageBinding>() {
                 onPageChangeListener.onPageSelected(getBinding()?.pages?.currentItem!!)
             }
         }, 300)
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is OnPageChangeListener) {
+            mOnPageChangeListener = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        mOnPageChangeListener = null
     }
 
     /**
